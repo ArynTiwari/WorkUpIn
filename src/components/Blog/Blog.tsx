@@ -1,16 +1,15 @@
 import { useFormik } from 'formik';
-import { getSession, GetSessionParams, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import router from 'next/router';
 import React from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { validateBlogs } from '../../src/validate';
-
+import { env } from '../../env/client.mjs';
 const Blog = () => {
     const { data: session, status } = useSession();
+    // const SignupSchema = z.object().shape();
     const formik = useFormik({
         initialValues: {
-            // blogId: '',
             title: '',
             description: '',
             image: '',
@@ -20,17 +19,16 @@ const Blog = () => {
             },
 
         },
-        validate: validateBlogs,
+        // validationSchema:{SignupSchema},
         onSubmit
     })
-    async function onSubmit(values: any) {
+    async function onSubmit(values: unknown) {
         const options = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(values)
         }
-
-        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blogs`, options)
+        await fetch(`${env.NEXT_PUBLIC_URL}/api/blogs`, options)
             .then(res => res.json())
             .then((data) => {
                 const { name } = data
@@ -53,7 +51,7 @@ const Blog = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    router.push(`${process.env.NEXT_PUBLIC_URL}/profile`)
+                    void router.push(`${env.NEXT_PUBLIC_URL}/profile`)
                 }
                 console.log(data)
             })
