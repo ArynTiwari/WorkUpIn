@@ -4,7 +4,7 @@ import mountain from "../../../public/assets/unDraw/mountain.jpg";
 interface props {
   title: string | undefined;
   desc: string | undefined;
-  category: string | undefined;
+  category: string[] | undefined;
   createdAt: string | undefined;
 }
 const SingleBlog = ({ title, desc, category, createdAt }: props) => {

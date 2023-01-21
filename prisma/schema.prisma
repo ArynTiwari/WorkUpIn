@@ -46,6 +46,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     blogs         Blog[]
+    projects      Project[]
 }
 
 model VerificationToken {
@@ -64,7 +65,18 @@ model Blog {
     author    User     @relation(fields: [authorId], references: [id])
     authorId  String   @db.ObjectId
     createdAt DateTime @updatedAt
-    category  String
+    category  String[]
+}
+model Project {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    title     String
+    desc      String
+    author    User     @relation(fields: [authorId], references: [id])
+    authorId  String   @db.ObjectId
+    createdAt DateTime @updatedAt
+    amount    String
+    level     String
+    category  String[]
 }
 
 type Address {

@@ -1,37 +1,24 @@
+import type { NextPage } from "next";
 import React from "react";
 
-const NotFound: React.FC = () => {
+const NotFound: NextPage = () => {
   return (
     <>
-      <section>
-        <div
-          className="flex h-screen
-    w-screen
-    items-center
-    justify-center
-    bg-gradient-to-r
-    from-indigo-600
-    to-blue-400
-  "
-        >
-          <div className="rounded-md bg-white px-40 py-20 shadow-xl">
-            <div className="flex flex-col items-center">
-              <h1 className="text-9xl font-bold text-blue-600">404</h1>
-
-              <h6 className="mb-2 text-center text-2xl font-bold text-gray-800 md:text-3xl">
-                <span className="text-red-500">Oops!</span> Page not found
-              </h6>
-
-              <p className="mb-8 text-center text-gray-500 md:text-lg">
-                The page you&apos;re looking for doesn&apos;t exist.
+      <section className="flex h-[80vh] items-center justify-center overflow-hidden">
+        <div className="flex h-screen w-screen items-center">
+          <div className="container flex flex-col items-center justify-center px-5 text-gray-700 md:flex-row">
+            <div className="max-w-md">
+              <div className="font-dark text-5xl font-bold">404 :(</div>
+              <p className="text-2xl font-light leading-normal md:text-3xl">
+                Sorry we couldn&apos;t find this page.{" "}
               </p>
-
-              <a
-                href="#"
-                className="bg-blue-100 px-6 py-2 text-sm font-semibold text-blue-800"
-              >
-                Go home
-              </a>
+              <p className="mb-8">
+                But dont worry, you can find plenty of other things on our
+                homepage.
+              </p>
+              <button className="focus:shadow-outline-blue inline rounded-lg border border-transparent bg-violet-600 px-4 py-2 text-sm font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-violet-800 focus:outline-none active:bg-blue-600">
+                Back to homepage
+              </button>
             </div>
           </div>
         </div>

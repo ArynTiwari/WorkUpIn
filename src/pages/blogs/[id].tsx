@@ -12,7 +12,6 @@ const DisplayBlogs: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
   const { data: blog, isLoading, isError } = api.blogs.getOne.useQuery({ id });
-  console.log(blog);
   if (isLoading) {
     return <LoadingTemplate />;
   }

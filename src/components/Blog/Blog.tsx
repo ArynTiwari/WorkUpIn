@@ -33,26 +33,31 @@ const Blog: React.FC = () => {
   }) {
     await mutation
       .mutateAsync(values)
-      .then((result) =>
-        toast.success("🦄 Blog posted Successfully!", {
+      .then((result) => {
+        toast.success(`🦄${result.title} posted Successfully! `, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           draggable: true,
           progress: undefined,
-        })
-      )
-      .catch((error) =>
-        toast.error(`🦄 ${error as string} `, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-        })
-      );
+        });
+        setTimeout(() => {
+          return void router.push(`${env.NEXT_PUBLIC_URL}/profile`);
+        }, 3000);
+      })
+      .catch((error: Array<string>) => {
+        Object.entries(error).forEach(([field, message]) => {
+          toast.error(`🦄 ${field}: ${message} `, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+      });
   }
   return (
     <>

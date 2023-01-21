@@ -2,17 +2,24 @@ import { api } from "../../utils/api";
 import Link from "next/link";
 import moment from "moment";
 import LoadingTemplate from "../../components/Utils/LoadingTemplate";
+import type { NextPage } from "next";
 function date(value: moment.MomentInput) {
   const time = moment.utc(value).utcOffset("+05:30").format("DD-MM-YY HH:mm");
   return time;
 }
 
-const DisplayBlogs: React.FC = () => {
-  const blog = api.blogs.getAll.useQuery();
+const DisplayBlogs: NextPage = () => {
+  const { data: blog, isLoading, isError } = api.blogs.getAll.useQuery();
+  if (isLoading) {
+    return <LoadingTemplate />;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <div className="flex flex-col ">
-      {blog?.data?.length ? (
-        blog.data.map((list) => (
+      {blog?.length ? (
+        blog.map((list) => (
           <div className="mx-4 my-2" key={list.id}>
             <div className="flex flex-col">
               <div className="flex flex-col justify-between rounded-b border-r border-b border-l border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
