@@ -2,6 +2,7 @@ import Talk from "talkjs";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, useRef } from "react";
 import Notifier from "../Utils/Notifier";
+
 interface prop {
   id: string;
   name: string;
@@ -14,8 +15,6 @@ function MyChatComponent({ id, name, email, photoUrl }: prop) {
 
   // wait for TalkJS to load
   const [talkLoaded, markTalkLoaded] = useState(false);
-  const [alert, setalert] = useState(0);
-
   useEffect(() => {
     void Talk.ready.then(() => markTalkLoaded(true));
 
@@ -52,14 +51,8 @@ function MyChatComponent({ id, name, email, photoUrl }: prop) {
       void inbox.mount(chatboxEl.current);
       session.unreads.onChange((unreadConversations: unknown[]) => {
         const amountOfUnreads = unreadConversations.length;
-
-        // update the text and hide the badge if there are
-        // no unreads.
-
-        // update the tab title so users can easily see that they have
-        // messages waiting
         if (amountOfUnreads > 0) {
-          setalert(amountOfUnreads);
+          <Notifier count={amountOfUnreads}/>
         }
       });
 

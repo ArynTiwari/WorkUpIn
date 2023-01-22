@@ -1,9 +1,14 @@
-import React from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import MyChatComponent from "../../components/chat/ChatPanel";
+import ErrorPage from "../../components/Utils/Error";
 const Chat = () => {
-  const { data: session } = useSession();
-
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  if (status === "unauthenticated") {
+    void router.push("/");
+    return <ErrorPage />;
+  }
   return (
     <MyChatComponent
       id={session?.user?.id as string}

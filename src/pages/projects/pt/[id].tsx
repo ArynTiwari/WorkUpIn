@@ -1,12 +1,12 @@
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
 import { useSession } from "next-auth/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import LoadingTemplate from "../../components/Utils/LoadingTemplate";
+import LoadingTemplate from "../../../components/Utils/LoadingTemplate";
 import moment from "moment";
-import SingleProject from "../../components/Project/SingleProject";
+import SingleProject from "../../../components/Project/SingleProject";
 import type { User } from "next-auth";
-import Error from "../../components/Utils/Error";
+import Error from "../../../components/Utils/Error";
 function date(value: moment.MomentInput) {
   const time = moment.utc(value).utcOffset("+05:30").format("DD-MM-YY HH:mm");
   return time;

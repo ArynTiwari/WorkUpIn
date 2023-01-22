@@ -8,6 +8,21 @@ export const blogRouter = createTRPCRouter({
         return ctx.prisma.blog.findMany({
         })
     }),
+    getUserBlog: publicProcedure
+        .input(
+            z.object({
+                id: z.string()
+            })
+        )
+        .
+        query(async ({ ctx, input }) => {
+            const blog = await ctx.prisma.blog.findMany({
+                where: {
+                    authorId: input.id
+                },
+            })
+            return blog
+        }),
     getOne: publicProcedure
         .input(
             z.object({
@@ -45,7 +60,6 @@ export const blogRouter = createTRPCRouter({
                     },
                 });
             } catch (error) {
-                console.log(error)
                 throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' })
             }
         })

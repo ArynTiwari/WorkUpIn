@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
 import { signIn } from "next-auth/react";
 import React from "react";
 
-const Error: React.FC = () => {
+const ErrorPage: React.FC = () => {
   function siginIn() {
     void signIn();
   }
@@ -31,4 +30,4 @@ const Error: React.FC = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;

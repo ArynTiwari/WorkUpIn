@@ -25,7 +25,7 @@ const DisplayBlogs: NextPage = () => {
               <div className="flex flex-col justify-between rounded-b border-r border-b border-l border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
                 <div className="mb-8">
                   <Link
-                    href={`/blogs/${list.id}`}
+                    href={`/blogs/pt/${list.id}`}
                     className="mb-2 cursor-pointer text-xl font-bold text-gray-900"
                   >
                     {list.title}

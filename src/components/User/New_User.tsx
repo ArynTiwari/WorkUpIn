@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/Form.module.css";
 import { validateNewUser } from "../../src/validate";
 import { ChatBubbleBottomCenterIcon ,GlobeAsiaAustraliaIcon} from "@heroicons/react/24/outline";
+import { env } from "../../env/client.mjs";
 
 const NewUser = () => {
   let token: string;
@@ -71,7 +72,7 @@ const NewUser = () => {
           });
         }
         function redirect() {
-          router.push(`${process.env.NEXT_PUBLIC_URL}/profile`);
+          void router.push(`${env.NEXT_PUBLIC_URL}/profile`);
         }
         setTimeout(redirect, 3000);
       });

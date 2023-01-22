@@ -12,20 +12,4 @@ const Settings = ({ session }: any) => {
 };
 
 export default Settings;
-export async function getServerSideProps(
-  context: GetSessionParams | undefined
-) {
-  const logged = await getSession(context);
-  if (!logged) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 
-  return {
-    props: { logged },
-  };
-}

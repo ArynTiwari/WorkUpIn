@@ -1,8 +1,8 @@
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
 import moment from "moment";
 import { useRouter } from "next/router";
-import LoadingTemplate from "../../components/Utils/LoadingTemplate";
-import SingleBlog from "../../components/Blog/SingleBlog";
+import LoadingTemplate from "../../../components/Utils/LoadingTemplate";
+import SingleBlog from "../../../components/Blog/SingleBlog";
 import type { NextPage } from "next";
 function date(value: moment.MomentInput) {
   const time = moment.utc(value).utcOffset("+05:30").format("DD-MM-YY HH:mm");

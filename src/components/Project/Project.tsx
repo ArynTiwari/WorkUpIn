@@ -1,37 +1,53 @@
 import { useFormik } from "formik";
-import { getSession, GetSessionParams, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import router from "next/router";
 import React from "react";
 import { env } from "../../env/client.mjs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Project = () => {
+import { api } from "../../utils/api";
+const CreateProject = () => {
   const { data: session } = useSession();
+  const mutation = api.projects.add.useMutation({});
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      desc: "",
       time: "",
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(),
       category: "",
       level: "",
       amount: "",
     },
     onSubmit,
   });
-  async function onSubmit(values: never) {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    };
-
-    await fetch(`${env.NEXT_PUBLIC_URL}/api/projects`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        const { error } = data;
-        if (error) {
-          toast.error(`🦄${error}`, {
+  async function onSubmit(values: {
+    title: string;
+    desc: string;
+    time: string;
+    createdAt: Date;
+    category: string;
+    level: string;
+    amount: string;
+  }) {
+    await mutation
+      .mutateAsync(values)
+      .then((result) => {
+        toast.success(`🦄${result.title} posted Successfully! `, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          return void router.push(`${env.NEXT_PUBLIC_URL}/profile`);
+        }, 3000);
+      })
+      .catch((error: Array<string>) => {
+        Object.entries(error).forEach(([field, message]) => {
+          toast.error(`🦄 ${field}: ${message} `, {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
@@ -39,20 +55,7 @@ const Project = () => {
             draggable: true,
             progress: undefined,
           });
-        } else {
-          toast.success("🦄 Project posted Successfully!", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-        function redirect() {
-          router.push(`${process.env.NEXT_PUBLIC_URL}/profile`);
-        }
-        setTimeout(redirect, 3000);
+        });
       });
   }
   return (
@@ -68,14 +71,14 @@ const Project = () => {
         draggable
         pauseOnHover
       />
-      <div className="flex h-2/4 items-center justify-center bg-gray-50 py-12">
+      <div className="flex items-center justify-center bg-gray-50">
         <div className="w-full max-w-md space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Create your own Project
             </h2>
             <p className="mt-2 text-center text-sm font-medium  text-purple-600 hover:text-indigo-500">
-              Write to inspire
+              Write the details of your project
             </p>
           </div>
           <div className=" max-w-md overflow-hidden rounded bg-white p-5 shadow-xl">
@@ -107,9 +110,9 @@ const Project = () => {
                     <input
                       type="text"
                       placeholder="description"
-                      {...formik.getFieldProps("description")}
-                      className={`w-full rounded-lg border border-purple-400 px-3 `}
-                      name="description"
+                      {...formik.getFieldProps("desc")}
+                      className={`h-10 w-full rounded-lg border border-purple-400 px-3 `}
+                      name="desc"
                     />
                   </div>
                   <div className="col-span-12">
@@ -123,7 +126,7 @@ const Project = () => {
                       type="text"
                       placeholder="time"
                       {...formik.getFieldProps("time")}
-                      className={`w-full rounded-lg border border-purple-400 px-3 `}
+                      className={`h-10 w-full rounded-lg border border-purple-400 px-3 `}
                       name="time"
                     />
                   </div>
@@ -139,7 +142,7 @@ const Project = () => {
                       type="text"
                       placeholder="category"
                       {...formik.getFieldProps("category")}
-                      className={`w-full rounded-lg border border-purple-400 px-3 `}
+                      className={`h-10 w-full rounded-lg border border-purple-400 px-3 `}
                       name="category"
                     />
                   </div>
@@ -154,7 +157,7 @@ const Project = () => {
                       type="text"
                       placeholder="level"
                       {...formik.getFieldProps("level")}
-                      className={`w-full rounded-lg border border-purple-400 px-3 `}
+                      className={`h-10 w-full rounded-lg border border-purple-400 px-3 `}
                       name="level"
                     />
                   </div>
@@ -169,7 +172,7 @@ const Project = () => {
                       type="text"
                       placeholder="amount"
                       {...formik.getFieldProps("amount")}
-                      className={`w-full rounded-lg border border-purple-400 px-3 `}
+                      className={`h-10 w-full rounded-lg border border-purple-400 px-3 `}
                       name="amount"
                     />
                   </div>
@@ -181,12 +184,6 @@ const Project = () => {
                       Submit
                     </button>
                   </div>
-
-                  {/* <div className="col-span-12">
-                                        <label htmlFor="des" className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
-                                        <input type="file" name="img" id="img"
-                                            className="w-full border rounded-lg" />
-                                    </div> */}
                 </div>
               </div>
             </form>
@@ -197,4 +194,4 @@ const Project = () => {
   );
 };
 
-export default Project;
+export default CreateProject;

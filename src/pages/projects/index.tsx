@@ -5,6 +5,7 @@ import moment from "moment";
 import type { NextPage } from "next";
 import { api } from "../../utils/api";
 import LoadingTemplate from "../../components/Utils/LoadingTemplate";
+import ErrorPage from "../../components/Utils/Error";
 function date(value: moment.MomentInput) {
   const time = moment.utc(value).utcOffset("+05:30").format("DD-MM-YY HH:mm");
   return time;
@@ -38,7 +39,7 @@ const DisplayProjects: NextPage = () => {
                 <div className="mt-2  ">
                   <div className="pl-4">
                     <Link
-                      href={`/projects/${list.id}`}
+                      href={`/projects/pt/${list.id}`}
                       className="cursor-pointer text-2xl text-black hover:text-violet-600 hover:underline"
                     >
                       {list.title}
@@ -151,7 +152,7 @@ const DisplayProjects: NextPage = () => {
             </div>
           ))
         ) : (
-          <h1 className="flex text-center">Please Refresh</h1>
+          <ErrorPage/>
         )}
       </div>
     </>
