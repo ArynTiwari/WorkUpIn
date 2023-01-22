@@ -5,7 +5,8 @@ import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import userAvtar from "../../../public/assets/userAvtar.svg";
-import logo from "../../../public/assets/logo.png"
+import logo from "../../../public/assets/logo.png";
+import { env } from "../../env/client.mjs";
 const navigation = [
   { name: "Home", href: "/", current: false },
   // { name: 'Team', href: '#', current: false },
@@ -17,10 +18,10 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Nav:React.FC= ()=> {
+const Nav: React.FC = () => {
   const { data: session } = useSession();
   return (
-    <Disclosure as="nav" className="bg-violet-700 rounded-full mx-2 mt-1">
+    <Disclosure as="nav" className="mx-2 mt-1 rounded-full bg-violet-700">
       {({ open }) => (
         <>
           <div className="mx-2 md:mx-6 lg:mx-12 ">
@@ -37,10 +38,10 @@ const Nav:React.FC= ()=> {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center left-0">
+                <div className="left-0 flex flex-shrink-0 items-center">
                   <Link href={"/"}>
                     <Image
-                      className="hidden h-8 w-auto lg:block cursor-pointer"
+                      className="hidden h-8 w-auto cursor-pointer lg:block"
                       src={logo}
                       alt=""
                       height={50}
@@ -48,7 +49,7 @@ const Nav:React.FC= ()=> {
                     />
                   </Link>
                 </div>
-                <div className="hidden lg:block ml-4">
+                <div className="ml-4 hidden lg:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
@@ -58,7 +59,7 @@ const Nav:React.FC= ()=> {
                           item.current
                             ? "bg-white text-black"
                             : "text-white hover:bg-blue-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-lg font-medium"
+                          "rounded-md px-3 py-2 text-lg font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -80,7 +81,7 @@ const Nav:React.FC= ()=> {
                         e.preventDefault();
                         void signIn();
                       }}
-                      className="flex px-3 py-2 rounded-md text-white font-medium text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="flex rounded-md px-3 py-2 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       Sign In
                     </button>
@@ -102,9 +103,9 @@ const Nav:React.FC= ()=> {
                           <Image
                             className="rounded-full"
                             src={
-                              session.user?.image as string
+                              (session.user?.image as string)
                                 ? (session?.user?.image as string)
-                                : userAvtar as string
+                                : (userAvtar as string)
                             }
                             alt="user"
                             height={50}
@@ -151,6 +152,19 @@ const Nav:React.FC= ()=> {
                           <Menu.Item>
                             {({ active }) => (
                               <Link
+                                href={`${env.NEXT_PUBLIC_URL}/chat`}
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Inbox
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
                                 href="/profile/settings"
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
@@ -186,7 +200,7 @@ const Nav:React.FC= ()=> {
             </div>
           </div>
 
-          <Disclosure.Panel className="lg:hidden fixed bg-violet-600 rounded-xl ">
+          <Disclosure.Panel className="fixed rounded-xl bg-violet-600 lg:hidden ">
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
@@ -204,7 +218,7 @@ const Nav:React.FC= ()=> {
                     href={item.href}
                     className={classNames(
                       item.current ? "bg-white text-violet-600" : "text-white",
-                      "block px-3 py-2 rounded-md text-base font-medium"
+                      "block rounded-md px-3 py-2 text-base font-medium"
                     )}
                     aria-current={item.current ? "page" : undefined}
                   >
@@ -214,10 +228,10 @@ const Nav:React.FC= ()=> {
               </div>
             </Transition>
           </Disclosure.Panel>
-          <hr className="border-b border-gray-100 opacity-25 my-0 py-0"></hr>
+          <hr className="my-0 border-b border-gray-100 py-0 opacity-25"></hr>
         </>
       )}
     </Disclosure>
   );
-}
-export default Nav
+};
+export default Nav;

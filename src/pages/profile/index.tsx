@@ -1,10 +1,11 @@
-import { getSession, GetSessionParams, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import Blog from "../../components/Blog/Blog";
-import PaperClipIcon from "@heroicons/react/24/outline/PaperClipIcon";
-function Profile(logged: unknown) {
+import { env } from "../../env/client.mjs";
+function Profile() {
   const { data: session, status } = useSession();
+  const id = session?.user?.id as string;
+
   return (
     <>
       {status === "loading" && (
@@ -17,7 +18,7 @@ function Profile(logged: unknown) {
           </Link>
         </h1>
       )}
-      {session && status === "authenticated" && logged && (
+      {session && status === "authenticated" && (
         <>
           <div className="overflow-hidden bg-white shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
@@ -59,7 +60,9 @@ function Profile(logged: unknown) {
                     Public Profile
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    <Link href={''}>Click here</Link>
+                    <Link href={`${env.NEXT_PUBLIC_URL}/user/profile/${id}`}>
+                      Click here
+                    </Link>
                   </dd>
                 </div>
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -80,30 +83,5 @@ function Profile(logged: unknown) {
     </>
   );
 }
-export async function getServerSideProps(
-  context: GetSessionParams | undefined
-) {
-  const logged = await getSession(context);
-  const email = logged?.user?.email;
-  if (email == process.env.ADMIN_EMAIL) {
-    return {
-      redirect: {
-        destination: "/admin",
-        permanent: false,
-      },
-    };
-  }
-  if (!logged) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 
-  return {
-    props: { logged },
-  };
-}
 export default Profile;

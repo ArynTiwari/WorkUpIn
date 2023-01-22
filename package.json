@@ -19,6 +19,8 @@
     "@trpc/next": "^10.8.1",
     "@trpc/react-query": "^10.8.1",
     "@trpc/server": "^10.8.1",
+    "agora-rtm-sdk": "^1.6.0-205",
+    "axios": "^1.2.3",
     "dayjs": "^1.11.7",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
@@ -28,7 +30,10 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-toastify": "^9.1.1",
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.5.4",
     "superjson": "1.9.1",
+    "talkjs": "^0.15.6",
     "zod": "^3.20.2"
   },
   "devDependencies": {

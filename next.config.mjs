@@ -14,7 +14,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains:['lh3.googleusercontent.com','flowbite.com','images.indianexpress.com','images.livemint.com','c.ndtvimg.com','avatars.githubusercontent.com','cdn.discordapp.com']
+    domains:['*','images.unsplash.com','cdn.discordapp.com','lh3.googleusercontent.com']
    },
 };
 export default config;

@@ -8,7 +8,7 @@ export const projectRouter = createTRPCRouter({
         return ctx.prisma.project.findMany({
         })
     }),
-    getOne: publicProcedure
+    getOne: protectedProcedure
         .input(
             z.object({
                 id: z.string()
@@ -16,12 +16,16 @@ export const projectRouter = createTRPCRouter({
         )
         .
         query(async ({ ctx, input }) => {
-            const blog = await ctx.prisma.project.findUnique({
+            console.log("This is id on backend", input.id)
+            const project = await ctx.prisma.project.findUnique({
                 where: {
                     id: input.id
                 },
+                include: {
+                    author: true
+                }
             })
-            return blog
+            return project
         }),
     add: protectedProcedure
         .input(

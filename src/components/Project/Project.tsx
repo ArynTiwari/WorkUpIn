@@ -2,34 +2,31 @@ import { useFormik } from "formik";
 import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import router from "next/router";
 import React from "react";
+import { env } from "../../env/client.mjs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { validateProjects } from "../../src/validate";
-
 const Project = () => {
   const { data: session } = useSession();
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
-      user: session?.user?.id,
       time: "",
       createdAt: new Date().toISOString(),
       category: "",
       level: "",
       amount: "",
     },
-    validate: validateProjects,
     onSubmit,
   });
-  async function onSubmit(values: any) {
+  async function onSubmit(values: never) {
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     };
 
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/api/projects`, options)
+    await fetch(`${env.NEXT_PUBLIC_URL}/api/projects`, options)
       .then((res) => res.json())
       .then((data) => {
         const { error } = data;
@@ -71,8 +68,8 @@ const Project = () => {
         draggable
         pauseOnHover
       />
-      <div className="h-2/4 flex items-center justify-center bg-gray-50 py-12">
-        <div className="max-w-md w-full space-y-8">
+      <div className="flex h-2/4 items-center justify-center bg-gray-50 py-12">
+        <div className="w-full max-w-md space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Create your own Project
@@ -81,9 +78,9 @@ const Project = () => {
               Write to inspire
             </p>
           </div>
-          <div className=" bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
+          <div className=" max-w-md overflow-hidden rounded bg-white p-5 shadow-xl">
             <form className="space-y-4" onSubmit={formik.handleSubmit}>
-              <div className="rounded-md shadow-sm -space-y-px">
+              <div className="-space-y-px rounded-md shadow-sm">
                 <div className="grid gap-6">
                   <div className="col-span-12">
                     <label
@@ -97,7 +94,7 @@ const Project = () => {
                       {...formik.getFieldProps("title")}
                       name="title"
                       placeholder="Title"
-                      className="w-full h-10 px-3 border-purple-400 border rounded-lg "
+                      className="h-10 w-full rounded-lg border border-purple-400 px-3 "
                     />
                   </div>
                   <div className="col-span-12">
@@ -111,7 +108,7 @@ const Project = () => {
                       type="text"
                       placeholder="description"
                       {...formik.getFieldProps("description")}
-                      className={`w-full px-3 border-purple-400 border rounded-lg `}
+                      className={`w-full rounded-lg border border-purple-400 px-3 `}
                       name="description"
                     />
                   </div>
@@ -126,7 +123,7 @@ const Project = () => {
                       type="text"
                       placeholder="time"
                       {...formik.getFieldProps("time")}
-                      className={`w-full px-3 border-purple-400 border rounded-lg `}
+                      className={`w-full rounded-lg border border-purple-400 px-3 `}
                       name="time"
                     />
                   </div>
@@ -142,7 +139,7 @@ const Project = () => {
                       type="text"
                       placeholder="category"
                       {...formik.getFieldProps("category")}
-                      className={`w-full px-3 border-purple-400 border rounded-lg `}
+                      className={`w-full rounded-lg border border-purple-400 px-3 `}
                       name="category"
                     />
                   </div>
@@ -157,7 +154,7 @@ const Project = () => {
                       type="text"
                       placeholder="level"
                       {...formik.getFieldProps("level")}
-                      className={`w-full px-3 border-purple-400 border rounded-lg `}
+                      className={`w-full rounded-lg border border-purple-400 px-3 `}
                       name="level"
                     />
                   </div>
@@ -172,14 +169,14 @@ const Project = () => {
                       type="text"
                       placeholder="amount"
                       {...formik.getFieldProps("amount")}
-                      className={`w-full px-3 border-purple-400 border rounded-lg `}
+                      className={`w-full rounded-lg border border-purple-400 px-3 `}
                       name="amount"
                     />
                   </div>
                   <div>
                     <button
                       type="submit"
-                      className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                      className="group relative flex w-full justify-center rounded-md border border-transparent bg-purple-600 py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                     >
                       Submit
                     </button>

@@ -34,7 +34,6 @@ export const blogRouter = createTRPCRouter({
             }),
         )
         .mutation(async ({ ctx, input }) => {
-            console.log("This is the input coming", input)
             try {
                 return await ctx.prisma.blog.create({
                     data: {
