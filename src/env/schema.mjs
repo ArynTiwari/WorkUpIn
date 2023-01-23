@@ -56,6 +56,7 @@ export const serverEnv = {
 export const clientSchema = z.object({
   NEXT_PUBLIC_URL: z.string().url(),
   NEXT_PUBLIC_AGORA_ID: z.string(),
+  NEXT_PUBLIC_NEWS_API : z.string()
   // NEXT_PUBLIC_CLIENTVAR: z.string(),
 });
 
@@ -68,5 +69,6 @@ export const clientSchema = z.object({
 export const clientEnv = {
   NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
   NEXT_PUBLIC_AGORA_ID: process.env.NEXT_PUBLIC_AGORA_ID,
+  NEXT_PUBLIC_NEWS_API: process.env.NEXT_PUBLIC_NEWS_API
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
