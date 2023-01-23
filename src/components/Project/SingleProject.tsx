@@ -49,6 +49,7 @@ const SingleProject = ({ title, desc, category, createdAt, author }: props) => {
               <p className=" text-0xl mr-7 mb-7 text-base text-neutral-900">
                 Skills Required: {category}
               </p>
+              <hr className="my-5 stroke-2"></hr>
             </div>
           </div>
           <div className="flex">

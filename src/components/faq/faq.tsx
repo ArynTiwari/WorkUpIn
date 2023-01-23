@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaFontAwesome } from 'react-icons/fa';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 interface IProps{
     question:string,
     answer:string

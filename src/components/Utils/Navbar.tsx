@@ -49,7 +49,7 @@ const Nav: React.FC = () => {
                     />
                   </Link>
                 </div>
-                <div className="ml-4 hidden lg:block z-50">
+                <div className="z-50 ml-4 hidden lg:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
@@ -122,13 +122,15 @@ const Nav: React.FC = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-[0.25px] z-10 mt-4 w-30 origin-top-right rounded-md py-1 shadow-lg ring-1 bg-violet-600 ring-violet-500 ring-opacity-75 focus:outline-none">
+                        <Menu.Items className="w-30 absolute right-[0.25px] z-10 mt-4 origin-top-right rounded-md bg-violet-600 py-1 shadow-lg ring-1 ring-violet-500 ring-opacity-75 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
                               <Link
                                 href="/profile"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
@@ -141,7 +143,9 @@ const Nav: React.FC = () => {
                               <Link
                                 href="/profile/blogs"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
@@ -154,7 +158,9 @@ const Nav: React.FC = () => {
                               <Link
                                 href={`${env.NEXT_PUBLIC_URL}/chat`}
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
@@ -167,7 +173,9 @@ const Nav: React.FC = () => {
                               <Link
                                 href="/profile/settings"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
@@ -183,7 +191,9 @@ const Nav: React.FC = () => {
                                   void signOut();
                                 }}
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
@@ -200,7 +210,7 @@ const Nav: React.FC = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="fixed rounded-xl bg-violet-600 lg:hidden z-50 mt-1 ">
+          <Disclosure.Panel className="fixed z-50 mt-0.5 w-22 rounded-xl bg-violet-600 lg:hidden ">
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
@@ -210,7 +220,7 @@ const Nav: React.FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <div className="space-y-1 px-2 pt-2 pb-3 z-50">
+              <div className="z-50 space-y-1 px-2 pt-2 pb-3">
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}

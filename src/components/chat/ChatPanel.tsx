@@ -1,8 +1,6 @@
 import Talk from "talkjs";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, useRef } from "react";
-import Notifier from "../Utils/Notifier";
-
 interface prop {
   id: string;
   name: string;
@@ -52,7 +50,6 @@ function MyChatComponent({ id, name, email, photoUrl }: prop) {
       session.unreads.onChange((unreadConversations: unknown[]) => {
         const amountOfUnreads = unreadConversations.length;
         if (amountOfUnreads > 0) {
-          <Notifier count={amountOfUnreads}/>
         }
       });
 

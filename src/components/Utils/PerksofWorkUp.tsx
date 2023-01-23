@@ -1,5 +1,4 @@
-import { perksWorkUp } from "../public/constants";
-import FAQsec from "../faq/FAQsec";
+import { perksWorkUp } from "../../utils/constants";
 function WhyUs() {
   return (
     <div className="flex flex-col my-4">

@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { type User, type NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github'
@@ -28,11 +28,7 @@ export const authOptions: NextAuthOptions = {
       // Access token has expired, try to update it
     },
     session({ session, token }) {
-      session.user = token.user;
-      session.sessionToken = token.accessToken as string;
-      session.accessToken = token.access_token as string;
-      session.provider = token.provider as string;
-      session.refreshToken = token.refresToken as string;
+      session.user = token.user as User;
       return session;
     },
   },

@@ -494,9 +494,9 @@ function Yoga(){
                     alt="logo"
                   />
                   <h2 className="text-3xl font-semibold mt-1 mb-12 pb-1">Yoga expertise at your doorsteps</h2>
-                  <h3 className=" text-gray-500 text-2xl font-semibold mt-1 mb-12 pb-1">Yoga is like life it's balance of holding on & letting go..    </h3> </div>
+                  <h3 className=" text-gray-500 text-2xl font-semibold mt-1 mb-12 pb-1">Yoga is like life it&quot;s balance of holding on & letting go..    </h3> </div>
                 
-                  <p className="mb-4">"Trust youorself ,your power,you can do much more than you think."</p>
+                  <p className="mb-4">Trust youorself ,your power,you can do much more than you think.</p>
 
                   <div className="mb-4">
                   <div className="flex flex-wrap justify-left space-x-2">

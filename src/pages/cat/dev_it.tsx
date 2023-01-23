@@ -498,7 +498,7 @@ function Dev_It(){
                   <h3 className=" text-gray-500 text-2xl font-semibold mt-1 mb-12 pb-1">An iOS/Android developer saved his client money, time, and stress</h3>
                 </div>
                 
-                  <p className="mb-4">"Igor has great knowledge in mobile application development [and] always suggests a better and cost-effective solution. Superfast turnaround. Thank you Igor!"</p>
+                  <p className="mb-4">Igor has great knowledge in mobile application development [and] always suggests a better and cost-effective solution. Superfast turnaround. Thank you Igor!</p>
 
                   <div className="mb-4">
                   <div className="flex flex-wrap justify-left space-x-2">

@@ -400,7 +400,7 @@ const dev_sam = () => {
                             4/5
                         </p>
                         <p className="text-slate-600 font-serif text-1xl pt-2">
-                            "Igor has great knowledge in mobile application development [and] always suggests a better and cost-effective solution. Superfast turnaround. Thank you Igor!"
+                            Igor has great knowledge in mobile application development [and] always suggests a better and cost-effective solution. Superfast turnaround. Thank you Igor!
                         </p>
 
 

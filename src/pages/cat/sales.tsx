@@ -497,7 +497,7 @@ function Sales(){
                   <h3 className=" text-gray-500 text-2xl font-semibold mt-1 mb-12 pb-1">A graphic design pro creates a logo, branding, and style guide</h3>
                 </div>
                 
-                  <p className="mb-4">"If you have an opportunity to hire Felice, don't delay! He has great ideas, but is open to feedback and changes. He was always well prepared, kept me informed, met his timelines, and delivered what he said and more. My best experience on Upwork. In fact, I've started up another project with him and am still working with him."</p>
+                  <p className="mb-4">If you have an opportunity to hire Felice, dont&quot; delay! He has great ideas, but is open to feedback and changes. He was always well prepared, kept me informed, met his timelines, and delivered what he said and more. My best experience on Upwork. In fact, I&quot;ve started up another project with him and am still working with him.</p>
 
                   <div className="mb-4">
                   <div className="flex flex-wrap justify-left space-x-2">

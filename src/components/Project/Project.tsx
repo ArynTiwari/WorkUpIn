@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-import { useSession } from "next-auth/react";
 import router from "next/router";
 import React from "react";
 import { env } from "../../env/client.mjs";
@@ -7,7 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from "../../utils/api";
 const CreateProject = () => {
-  const { data: session } = useSession();
   const mutation = api.projects.add.useMutation({});
   const formik = useFormik({
     initialValues: {

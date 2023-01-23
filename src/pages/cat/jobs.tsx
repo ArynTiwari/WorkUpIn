@@ -178,7 +178,7 @@ const dev_sam = () => {
         <div className="border-none rounded overflow-hidden shadow-lg">
           <div className="px-6 py-4 mt-4 text-black ">
             <div className=" text-xl mb-2 text-3.5xl font-bold font-momo ">
-              Client's recent history (5)
+              Client&apos;s recent history (5)
             </div>
             <p className=" text-bolder text-sky-900 text-2xl mt-5">
               I have android app, I want to upload my app from your google console account.
