@@ -16,6 +16,7 @@ const PublicProfile = ({ id }: prop) => {
     showMessage = false;
   }
   const { data: data, isError, isLoading } = api.user.getOne.useQuery({ id });
+  const { data: user } = api.user.getUserInfo.useQuery({ id });
   if (isLoading) {
     return <LoadingTemplate />;
   }
@@ -92,7 +93,7 @@ const PublicProfile = ({ id }: prop) => {
                   </div>
                 ) : null}
                 <div className="w-full px-4 lg:order-1 lg:w-4/12">
-                  <div className="flex justify-center py-4 pt-8 lg:pt-4">
+                  {/* <div className="flex justify-center py-4 pt-8 lg:pt-4">
                     <div className="mr-4 p-3 text-center">
                       <span className="block text-xl font-bold uppercase tracking-wide text-gray-700">
                         22
@@ -111,35 +112,32 @@ const PublicProfile = ({ id }: prop) => {
                       </span>
                       <span className="text-sm text-gray-500">Comments</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="mt-12 text-center">
                 <h3 className="mb-2 text-4xl font-semibold leading-normal text-gray-800">
-                  {data?.name}
+                  {`${user?.firstName as string}  ${user?.lastName as string}`}
                 </h3>
                 <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-500">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                  Los Angeles, California
+                  {`${user?.city as string} ,  ${user?.state as string}`}
                 </div>
-                <div className="mb-2 mt-10 text-gray-700">
+                {/* <div className="mb-2 mt-10 text-gray-700">
                   <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
                   Solution Manager - Creative Tim Officer
                 </div>
                 <div className="mb-2 text-gray-700">
                   <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
                   University of Computer Science
-                </div>
+                </div> */}
               </div>
               <div className="mt-10 border-t border-gray-300 py-10 text-center">
+                <h1 className="text-3xl py-2">About Me</h1>
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full px-4 lg:w-9/12">
                     <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
+                      {user?.about}
                     </p>
                   </div>
                 </div>

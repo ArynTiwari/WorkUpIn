@@ -1,15 +1,17 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Image from "next/image";
+import { User } from "talkjs/all.js";
+import LoadingTemplate from "../../components/Utils/LoadingTemplate";
 import { env } from "../../env/client.mjs";
+import { api } from "../../utils/api";
 function Profile() {
   const { data: session, status } = useSession();
   const id = session?.user?.id as string;
-
+  const {data:user} = api.user.getUserInfo.useQuery({id})
   return (
     <>
       {status === "loading" && (
-        <h2 className="flex items-center justify-center">Loading</h2>
+        <h2 className="flex items-center justify-center"><LoadingTemplate/></h2>
       )}
       {status === "unauthenticated" && (
         <h1>
@@ -36,7 +38,7 @@ function Profile() {
                     Full name
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    {session.user?.name}
+                    {`${user?.firstName as string } ${user?.lastName as string}`}
                   </dd>
                 </div>
                 {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -88,11 +90,7 @@ function Profile() {
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">About</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                    incididunt cillum culpa consequat. Excepteur qui ipsum
-                    aliquip consequat sint. Sit id mollit nulla mollit nostrud
-                    in ea officia proident. Irure nostrud pariatur mollit ad
-                    adipisicing reprehenderit deserunt qui eu.
+                    {user?.about}
                   </dd>
                 </div>
               </dl>

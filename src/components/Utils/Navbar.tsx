@@ -21,7 +21,7 @@ function classNames(...classes: string[]) {
 const Nav: React.FC = () => {
   const { data: session } = useSession();
   return (
-    <Disclosure as="nav" className="mx-2 mt-1 rounded-full bg-violet-600">
+    <Disclosure as="nav" className="mx-2 mt-1 rounded-sm bg-violet-600">
       {({ open }) => (
         <>
           <div className="mx-2 md:mx-6 lg:mx-12 ">
@@ -49,7 +49,7 @@ const Nav: React.FC = () => {
                     />
                   </Link>
                 </div>
-                <div className="ml-4 hidden lg:block">
+                <div className="ml-4 hidden lg:block z-50">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
@@ -122,14 +122,14 @@ const Nav: React.FC = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-3 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute right-[0.25px] z-10 mt-4 w-30 origin-top-right rounded-md py-1 shadow-lg ring-1 bg-violet-600 ring-violet-500 ring-opacity-75 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
                               <Link
                                 href="/profile"
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Profile
@@ -142,7 +142,7 @@ const Nav: React.FC = () => {
                                 href="/profile/blogs"
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Blogs
@@ -155,7 +155,7 @@ const Nav: React.FC = () => {
                                 href={`${env.NEXT_PUBLIC_URL}/chat`}
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Inbox
@@ -168,7 +168,7 @@ const Nav: React.FC = () => {
                                 href="/profile/settings"
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Settings
@@ -184,7 +184,7 @@ const Nav: React.FC = () => {
                                 }}
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Sign out
@@ -200,7 +200,7 @@ const Nav: React.FC = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="fixed rounded-xl bg-violet-600 lg:hidden ">
+          <Disclosure.Panel className="fixed rounded-xl bg-violet-600 lg:hidden z-50 mt-1 ">
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
@@ -210,7 +210,7 @@ const Nav: React.FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <div className="space-y-1 px-2 pt-2 pb-3">
+              <div className="space-y-1 px-2 pt-2 pb-3 z-50">
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}

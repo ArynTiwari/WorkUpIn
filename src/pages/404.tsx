@@ -5,6 +5,7 @@ import React from "react";
 const NotFound: NextPage = () => {
   return (
     <>
+    <title>Not found!</title>
       <section className="flex h-[80vh] items-center justify-center overflow-hidden">
         <div className="flex items-center">
           <div className="container flex flex-col items-center justify-center px-5 text-gray-700 md:flex-row">

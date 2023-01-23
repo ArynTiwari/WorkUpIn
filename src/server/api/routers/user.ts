@@ -12,6 +12,15 @@ export const userRouter = createTRPCRouter({
                 }
             });
         }),
+    getUserInfo: protectedProcedure
+        .input(z.object({ id: z.string() }))
+        .query(({ ctx, input }) => {
+            return ctx.prisma.userDetails.findFirst({
+                where: {
+                    detailId: input.id
+                }
+            })
+        }),
 
     updateUser: protectedProcedure
         .input(z.object({
