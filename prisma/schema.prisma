@@ -37,16 +37,38 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+    CLIENT
+    TALENT
+    ADMIN
+}
+
 model User {
-    id            String    @id @default(auto()) @map("_id") @db.ObjectId
+    id            String        @id @default(auto()) @map("_id") @db.ObjectId
     name          String?
-    email         String?   @unique
+    email         String?       @unique
     emailVerified DateTime?
     image         String?
+    details       UserDetails[]
     accounts      Account[]
     sessions      Session[]
     blogs         Blog[]
     projects      Project[]
+}
+
+model UserDetails {
+    id        String @id @default(auto()) @map("_id") @db.ObjectId
+    user      User   @relation(fields: [detailId], references: [id])
+    detailId  String @db.ObjectId
+    firstName String
+    lastName  String
+    password  String
+    role      Role   @default(TALENT)
+    about     String
+    gender    String
+    zip       Int    @db.Int
+    city      String
+    state     String
 }
 
 model VerificationToken {

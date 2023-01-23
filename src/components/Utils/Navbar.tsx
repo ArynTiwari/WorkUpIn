@@ -21,7 +21,7 @@ function classNames(...classes: string[]) {
 const Nav: React.FC = () => {
   const { data: session } = useSession();
   return (
-    <Disclosure as="nav" className="mx-2 mt-1 rounded-full bg-violet-700">
+    <Disclosure as="nav" className="mx-2 mt-1 rounded-full bg-violet-600">
       {({ open }) => (
         <>
           <div className="mx-2 md:mx-6 lg:mx-12 ">

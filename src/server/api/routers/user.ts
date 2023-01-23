@@ -13,7 +13,48 @@ export const userRouter = createTRPCRouter({
             });
         }),
 
-    getSecretMessage: protectedProcedure.query(() => {
-        return "you can now see this secret message!";
-    }),
+    updateUser: protectedProcedure
+        .input(z.object({
+            firstName: z.string(),
+            lastName: z.string(),
+            password: z.string(),
+            role: z.enum(['CLIENT', 'TALENT']),
+            about: z.string(),
+            gender: z.string(),
+            zip: z.number(),
+            city: z.string(),
+            state: z.string()
+        }))
+        .mutation(({ ctx, input }) => {
+            return ctx.prisma.userDetails.upsert({
+                create: {
+                    detailId: ctx.session.user.id,
+                    firstName: input.firstName,
+                    lastName: input.lastName,
+                    password: input.password,
+                    role: input.role,
+                    about: input.about,
+                    gender: input.gender,
+                    zip: input.zip,
+                    city: input.city,
+                    state: input.state
+                },
+
+                update: {
+                    firstName: input.firstName,
+                    lastName: input.lastName,
+                    password: input.password,
+                    role: input.role,
+                    about: input.about,
+                    gender: input.gender,
+                    zip: input.zip,
+                    city: input.city,
+                    state: input.state
+                },
+                where: {
+                    id: ctx.session.user.id
+                },
+
+            });
+        }),
 });

@@ -36,6 +36,10 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  pages: {
+    error: '/error', // Error code passed in query string as ?error=
+    newUser: '/profile/settings' // New users will be directed here on first sign in (leave the property out if not of interest)
+  },
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60 * 5
