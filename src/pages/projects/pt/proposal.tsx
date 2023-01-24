@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Proposal } from "../../../components/Project/Proposal";
 
 const proposal = () => {
   return (
-    <div>proposal</div>
-  )
-}
+    <div>
+      <Proposal />
+    </div>
+  );
+};
 
-export default proposal
+export default proposal;

@@ -9,7 +9,6 @@ import logo from "../../../public/assets/logo.png";
 import { env } from "../../env/client.mjs";
 const navigation = [
   { name: "Home", href: "/", current: false },
-  // { name: 'Team', href: '#', current: false },
   { name: "Projects", href: "/projects", current: false },
   { name: "About", href: "/info/about", current: false },
 ];
@@ -81,7 +80,7 @@ const Nav: React.FC = () => {
                         e.preventDefault();
                         void signIn();
                       }}
-                      className="flex rounded-md px-3 py-2 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="flex hover:bg-white hover:text-violet-700 rounded-md px-3 py-2 text-lg font-semibold text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       Sign In
                     </button>
@@ -220,14 +219,14 @@ const Nav: React.FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <div className="z-50 space-y-1 px-2 pt-2 pb-3">
+              <div className="z-50 space-y-1 px-2 pt-2 pb-3 ">
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
                     as="a"
                     href={item.href}
                     className={classNames(
-                      item.current ? "bg-white text-violet-600" : "text-white",
+                      item.current ? "bg-white text-violet-600" : "text-white hover:bg-white hover:text-violet-700",
                       "block rounded-md px-3 py-2 text-base font-medium"
                     )}
                     aria-current={item.current ? "page" : undefined}

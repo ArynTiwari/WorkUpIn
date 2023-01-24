@@ -1,6 +1,6 @@
-import styles from '../styles/Layout.module.css';
+import styles from '../../styles/Form.module.css';
 import Image from 'next/image';
-import img1 from '../public/assets/img1.png'
+import img1 from '../../../public/assets/img1.png'
 export default function LoginLayout({ children }: any) {
     return (
         <div className="flex h-75% w-screen bg-violet-100">
