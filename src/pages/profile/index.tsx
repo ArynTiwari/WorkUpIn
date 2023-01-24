@@ -1,17 +1,30 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { User } from "talkjs/all.js";
+import ErrorPage from "../../components/Utils/Error";
 import LoadingTemplate from "../../components/Utils/LoadingTemplate";
 import { env } from "../../env/client.mjs";
 import { api } from "../../utils/api";
 function Profile() {
   const { data: session, status } = useSession();
   const id = session?.user?.id as string;
-  const {data:user} = api.user.getUserInfo.useQuery({id})
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = api.user.getUserInfo.useQuery({ id });
+  if (isLoading) {
+    return <LoadingTemplate />;
+  }
+  if (isError) {
+    return <ErrorPage />;
+  }
   return (
     <>
       {status === "loading" && (
-        <h2 className="flex items-center justify-center"><LoadingTemplate/></h2>
+        <h2 className="flex items-center justify-center">
+          <LoadingTemplate />
+        </h2>
       )}
       {status === "unauthenticated" && (
         <h1>
@@ -38,7 +51,7 @@ function Profile() {
                     Full name
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    {`${user?.firstName as string } ${user?.lastName as string}`}
+                    {`${user?.firstName as string} ${user?.lastName as string}`}
                   </dd>
                 </div>
                 {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -82,7 +95,9 @@ function Profile() {
                     Create a Project
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    <Link href={`${env.NEXT_PUBLIC_URL}/profile/projects/createProject`}>
+                    <Link
+                      href={`${env.NEXT_PUBLIC_URL}/profile/projects/createProject`}
+                    >
                       Click here
                     </Link>
                   </dd>
