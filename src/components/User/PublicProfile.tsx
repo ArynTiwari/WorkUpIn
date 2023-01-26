@@ -28,9 +28,9 @@ const PublicProfile = ({ id }: prop) => {
   }
   return (
     <>
-      <section className="relative block" style={{ height: "500px" }}>
+      <section className="flex" style={{ height: "500px" }}>
         <div
-          className="absolute top-0 h-full w-full bg-cover bg-center"
+          className="h-full w-full bg-cover bg-center"
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
@@ -61,12 +61,12 @@ const PublicProfile = ({ id }: prop) => {
           </svg>
         </div>
       </section>
-      <section className="relative bg-gray-300 py-16">
+      <section className="relative bg-gray-300 py-8">
         <div className="container mx-auto px-4">
           <div className="relative mb-6 -mt-64 flex w-full min-w-0 flex-col break-words rounded-lg bg-white shadow-xl">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
-                <div className="flex w-full justify-center px-4 lg:order-2 lg:w-3/12">
+                <div className="flex w-full justify-center px-4">
                   <div className="items-center justify-center">
                     <Image
                       alt="..."
@@ -132,8 +132,8 @@ const PublicProfile = ({ id }: prop) => {
                   University of Computer Science
                 </div> */}
               </div>
-              <div className="mt-10 border-t border-gray-300 py-10 text-center">
-                <h1 className="text-3xl py-2">About Me</h1>
+              <div className="border-t border-gray-300 py-5 text-center">
+                <h1 className="py-1 text-3xl">About Me</h1>
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full px-4 lg:w-9/12">
                     <p className="mb-4 text-lg leading-relaxed text-gray-800">

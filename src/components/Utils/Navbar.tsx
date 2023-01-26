@@ -83,6 +83,21 @@ const Nav: React.FC = () => {
                               </Link>
                             )}
                           </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/projects"
+                                className={classNames(
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
+                                Projects
+                              </Link>
+                            )}
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </>
