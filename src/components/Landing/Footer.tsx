@@ -5,7 +5,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 function Footer() {
   return (
     <>
-      <footer className="mt-2 md:mt-10 mb-10 bg-white">
+      <footer className="mt-2 md:mt-10 mb-10">
         <div className="flex flex-col">
           <div className="mb-6 md:mb-0 ">
             <Link href="/"className="flex mx-auto">
