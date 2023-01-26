@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { useFormik } from "formik";
-import router from "next/router";
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import styles from "../styles/Form.module.css";
+import { validateNewUser } from "../utils/validate";
 import { HiFingerPrint, HiOutlineUser } from "react-icons/hi";
-import { FaCity } from "react-icons/fa";
-import { GiZipper } from "react-icons/gi";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import styles from "../../styles/Form.module.css";
 import {
   ChatBubbleBottomCenterIcon,
   GlobeAsiaAustraliaIcon,
 } from "@heroicons/react/24/outline";
-import { env } from "../../env/client.mjs";
-import { validateNewUser } from "../../utils/validate";
-import { api } from "../../utils/api";
-
-const NewUser = () => {
-  const [show, setShow] = useState(false);
+import { GiZipper } from "react-icons/gi";
+import { FaCity } from "react-icons/fa";
+import { api } from "../utils/api";
+import router from "next/router";
+import { env } from "../env/client.mjs";
+const MyForm = () => {
   const mutation = api.user.updateUser.useMutation();
   type Role = "CLIENT" | "TALENT";
   const formik = useFormik({
@@ -26,10 +23,10 @@ const NewUser = () => {
       lastName: "",
       password: "",
       cpassword: "",
-      role: "" as unknown as Role,
+      role:  "TALENT" as Role,
       about: "",
       gender: "",
-      zip: "" as unknown as number,
+      zip: 123456,
       city: "",
       state: "",
     },
@@ -50,8 +47,8 @@ const NewUser = () => {
   }) {
     await mutation
       .mutateAsync(values)
-      .then(() => {
-        toast.success(`🦄Info Updated Successfully! `, {
+      .then((result) => {
+        toast.success(`🦄${result} posted Successfully! `, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -89,13 +86,14 @@ const NewUser = () => {
         draggable
         pauseOnHover
       />
-      <section className="flex flex-col items-center justify-between">
+
+      <section className="flex flex-col items-center justify-between gap-10">
         <header>
-          <div className="title flex flex-col p-2 text-center">
+          <div className="title flex flex-col text-center">
             <h1 className="mx-auto  py-4  text-4xl font-bold text-gray-800">
               Your Information
             </h1>
-            <p className="mx-auto text-gray-400">
+            <p className=" mx-auto text-gray-400">
               Update your information as per your verification id!
             </p>
           </div>
@@ -117,8 +115,8 @@ const NewUser = () => {
                 name="firstName"
               />
               {formik.errors.firstName && formik.touched.firstName ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.firstName}
                   </span>
                 </div>
@@ -143,8 +141,8 @@ const NewUser = () => {
                 name="lastName"
               />
               {formik.errors.lastName && formik.touched.lastName ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.lastName}
                   </span>
                 </div>
@@ -163,23 +161,20 @@ const NewUser = () => {
               }`}
             >
               <input
-                type={`${show ? "text" : "password"}`}
+                type="password"
                 placeholder="Password"
                 {...formik.getFieldProps("password")}
                 className={styles.input_text}
                 name="password"
               />
               {formik.errors.password && formik.touched.password ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.password}
                   </span>
                 </div>
               ) : (
-                <span
-                  className="icon flex items-center px-4"
-                  onClick={() => setShow(!show)}
-                >
+                <span className="icon flex items-center px-4">
                   <HiFingerPrint size={25} color={"#845CFF"} />
                 </span>
               )}
@@ -193,23 +188,20 @@ const NewUser = () => {
               }`}
             >
               <input
-                type={`${show ? "text" : "password"}`}
+                type="password"
                 placeholder="Confirm Password"
                 {...formik.getFieldProps("cpassword")}
                 className={styles.input_text}
                 name="cpassword"
               />
               {formik.errors.cpassword && formik.touched.cpassword ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.cpassword}
                   </span>
                 </div>
               ) : (
-                <span
-                  className="icon flex items-center px-4"
-                  onClick={() => setShow(!show)}
-                >
+                <span className="icon flex items-center px-4">
                   <HiFingerPrint size={25} color={"#845CFF"} />
                 </span>
               )}
@@ -228,12 +220,12 @@ const NewUser = () => {
                 name="role"
               >
                 <option value="">Select your Role</option>
-                <option value="TALENT">TALENT</option>
-                <option value="CLIENT">CLIENT</option>
+                <option value="talent">TALENT</option>
+                <option value="client">CLIENT</option>
               </select>
               {formik.errors.role && formik.touched.role ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.role}
                   </span>
                 </div>
@@ -257,14 +249,14 @@ const NewUser = () => {
                 className={styles.input_text}
                 name="gender"
               >
-                <option value="">Select Gender</option>
+                <option value="" >Select Gender</option>
                 <option value="talent">Male</option>
                 <option value="client">Female</option>
                 <option value="client">Other</option>
               </select>
               {formik.errors.gender && formik.touched.gender ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.gender}
                   </span>
                 </div>
@@ -289,8 +281,8 @@ const NewUser = () => {
                 name="about"
               />
               {formik.errors.about && formik.touched.about ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.about}
                   </span>
                 </div>
@@ -317,10 +309,11 @@ const NewUser = () => {
                 {...formik.getFieldProps("zip")}
                 className={styles.input_text}
                 name="zip"
+                value={''}
               />
               {formik.errors.zip && formik.touched.zip ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.zip}
                   </span>
                 </div>
@@ -346,8 +339,8 @@ const NewUser = () => {
                 name="city"
               />
               {formik.errors.city && formik.touched.city ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.city}
                   </span>
                 </div>
@@ -373,8 +366,8 @@ const NewUser = () => {
                 name="state"
               />
               {formik.errors.state && formik.touched.state ? (
-                <div className="my-auto mr-1 text-[10px] text-rose-500">
-                  <span className="text-[10px] text-rose-500">
+                <div className="my-auto mr-1 text-[16px] text-rose-500">
+                  <span className="text-[16px] text-rose-500">
                     {formik.errors.state}
                   </span>
                 </div>
@@ -389,7 +382,7 @@ const NewUser = () => {
               )}
             </div>
           </div>
-          <div className="mx-auto mt-1 w-2/4">
+          <div className="mx-auto mt-4 w-2/4">
             <button
               type="submit"
               className={`${styles.button_custom} mx-1 rounded-full bg-violet-500 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-violet-700 hover:shadow-lg focus:bg-violet-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-900 active:shadow-lg`}
@@ -402,4 +395,5 @@ const NewUser = () => {
     </>
   );
 };
-export default NewUser;
+
+export default MyForm;

@@ -56,7 +56,7 @@ const SingleProject = ({ title, desc, category, createdAt, author }: props) => {
             <div className="mt-4 px-6 py-4 text-black">
               <div className="flex flex-col">
                 <button className="mx-3 truncate rounded-full bg-green-500 px-14 py-1 pb-2 text-white hover:bg-violet-700">
-                  <Link href={`${env.NEXT_PUBLIC_URL}/projects/proposal`}>Submit Proposal</Link>
+                  <Link href={`${env.NEXT_PUBLIC_URL}/projects/pt/proposal`}>Submit Proposal</Link>
                 </button>
                 <button className="mx-3 mt-5 rounded-full bg-green-500 px-14 py-1 pb-2 text-white hover:bg-violet-700">
                   Save Job

@@ -20,21 +20,74 @@ function classNames(...classes: string[]) {
 const Nav: React.FC = () => {
   const { data: session } = useSession();
   return (
-    <Disclosure as="nav" className="mx-2 mt-1 rounded-sm bg-violet-600">
-      {({ open }) => (
+    <Disclosure as="nav" className="my-auto rounded-sm bg-violet-500">
+      {({}) => (
         <>
           <div className="mx-2 md:mx-6 lg:mx-12 ">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+            <div className="relative flex h-12 items-center justify-between">
+              <div className="absolute flex items-center lg:hidden">
+                <Menu as="div" className="">
+                  {({ open }) => (
+                    <>
+                      <div className="flex ml-2">
+                        <Menu.Button className="text-white">
+                          {open ? (
+                            <XMarkIcon
+                              className="block h-6 w-6 bg-white text-violet-500"
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <Bars3Icon
+                              className="block h-6 w-6"
+                              aria-hidden="true"
+                            />
+                          )}
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95">
+                        <Menu.Items className="w-30 absolute z-50 mt-3 rounded-md bg-violet-500 py-1 shadow-lg ring-1 ring-violet-500 ring-opacity-75 focus:outline-none">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/"
+                                className={classNames(
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
+                                Home
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/info/about"
+                                className={classNames(
+                                  active
+                                    ? "rounded-lg bg-green-300 text-black"
+                                    : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
+                                About
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </>
                   )}
-                </Disclosure.Button>
+                </Menu>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="left-0 flex flex-shrink-0 items-center">
@@ -67,9 +120,6 @@ const Nav: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                {/* <div className="">
-                  <Search />
-                </div> */}
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
@@ -80,7 +130,7 @@ const Nav: React.FC = () => {
                         e.preventDefault();
                         void signIn();
                       }}
-                      className="flex hover:bg-white hover:text-violet-700 rounded-md px-3 py-2 text-lg font-semibold text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="flex rounded-md px-3 py-2 text-lg text-white hover:bg-white hover:text-violet-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       Sign In
                     </button>
@@ -208,36 +258,6 @@ const Nav: React.FC = () => {
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="fixed z-50 mt-0.5 w-22 rounded-xl bg-violet-600 lg:hidden ">
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <div className="z-50 space-y-1 px-2 pt-2 pb-3 ">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current ? "bg-white text-violet-600" : "text-white hover:bg-white hover:text-violet-700",
-                      "block rounded-md px-3 py-2 text-base font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Transition>
-          </Disclosure.Panel>
-          <hr className="my-0 border-b border-gray-100 py-0 opacity-25"></hr>
         </>
       )}
     </Disclosure>

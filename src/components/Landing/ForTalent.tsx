@@ -16,7 +16,7 @@ const ForTalent: React.FC = () => {
             recusandae saepe quas! Alias, consequatur!
           </p>
           <div className="flex items-center justify-center">
-            <Button title="Find Talent" width="40" />
+            <Button title="Find Talent" />
           </div>
         </div>
         <div className="hidden lg:flex lg:max-w-[700px] ">

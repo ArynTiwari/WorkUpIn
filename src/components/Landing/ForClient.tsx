@@ -15,8 +15,8 @@ function ForClient() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem
             recusandae saepe quas! Alias, consequatur!
           </p>
-          <div className="flex flex-col lg:flex-row w-full justify-around gap-4 md:gap-2">
-            <Button title="Find Talent" width="38" />
+          <div className="flex items-center justify-center">
+            <Button title="Find Talent"/>
           </div>
         </div>
         <div className="hidden lg:flex lg:max-w-[700px] ">

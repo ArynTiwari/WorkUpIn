@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-
+const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
 export function validateContact(values: { email: string; name: string; query: string }) {
-  const errors: any = {};
+  const errors: {
+    email?: string,
+    name?: string,
+    query?: string
+  } = {};
   if (!values.name) {
     errors.name = "Required";
   }
@@ -18,7 +20,10 @@ export function login_validate(values: {
   email: string;
   password: string | string[];
 }) {
-  const errors: any = {};
+  const errors: {
+    email?: string;
+    password?: string | string[];
+  } = {};
 
   if (!values.email) {
     errors.email = "Required";
@@ -44,7 +49,12 @@ export function registerValidate(values: {
   password: string | string[];
   cpassword: string | string[];
 }) {
-  const errors: any = {};
+  const errors: {
+    name?: string | string[];
+    email?: string;
+    password?: string | string[];
+    cpassword?: string | string[];
+  } = {};
 
   if (!values.name) {
     errors.name = "Required";
@@ -78,7 +88,10 @@ export function registerValidate(values: {
   return errors;
 }
 export function validateBlogs(values: { title: string; description: string }) {
-  const errors: any = {};
+  const errors: {
+    title?: string,
+    description?: string
+  } = {};
   if (!values.title) {
     errors.title = "Required";
   }
@@ -94,7 +107,11 @@ export function validateProjects(values: {
   description: string;
   amount: string;
 }) {
-  const errors: any = {};
+  const errors: {
+    title?: string;
+    description?: string;
+    amount?: string;
+  } = {};
   if (!values.title) {
     errors.title = "Required";
   }
@@ -103,7 +120,7 @@ export function validateProjects(values: {
     errors.description = "Required";
   }
   if (!values.amount) {
-    errors.price = "Required";
+    errors.amount = "Required";
   }
 
   return errors;
@@ -113,26 +130,44 @@ export function validateNewUser(values: {
   lastName: string;
   password: string | string[];
   cpassword: string | string[];
+  role: string,
   about: string;
   gender: string;
   zip: number | null | undefined;
   city: string;
   state: string;
 }) {
-  const errors: any = {};
+  const errors: {
+    firstName?: string;
+    lastName?: string;
+    password?: string;
+    cpassword?: string;
+    role?: string;
+    about?: string;
+    gender?: string;
+    zip?: string;
+    city?: string;
+    state?: string;
+  } = {};
   if (!values.firstName) {
     errors.firstName = "Required";
   } else if (values.firstName.includes(" ", 0 - 9)) {
-    errors.lastName = "Cannot contain special characters or numbers";
+    errors.lastName = 'Space or Number found!';
+  } else if (specialCharacters.test(values.firstName)) {
+    errors.firstName = "Special characters found!";
   }
-
   if (!values.lastName) {
     errors.lastName = "Required";
   }
+  else if (values.lastName.includes(" ", 0 - 9)) {
+    errors.lastName = 'Space or Number found!';
+  } else if (specialCharacters.test(values.lastName)) {
+    errors.lastName = "Special characters found!";
+  }
   if (!values.password) {
     errors.password = "Required";
-  } else if (values.password.length < 8 || values.password.length > 20) {
-    errors.password = "Must be greater then 8 and less then 20 characters long";
+  } else if (values.password.length < 8) {
+    errors.password = "Too Short!";
   } else if (values.password.includes(" ")) {
     errors.password = "Invalid Password";
   }
@@ -143,11 +178,30 @@ export function validateNewUser(values: {
   } else if (values.cpassword.includes(" ")) {
     errors.cpassword = "Invalid Confirm Password";
   }
+  if (!values.role) {
+    errors.role = "Required";
+  }
   if (!values.about) {
-    errors.description = "Required";
+    errors.about = "Required";
   }
   if (!values.gender) {
     errors.gender = "Required";
   }
+  if (!values.zip) {
+    errors.zip = "Required";
+  }else if (values.zip <7) {
+    errors.zip = "Invalid!";
+  }
+   else if (isNaN(values.zip)) {
+    errors.zip = "Must be a number";
+  }
+  if (!values.city) {
+    errors.city = "Required";
+  }
+  if (!values.state) {
+    errors.state = "Required";
+  }
+
+
   return errors;
 }

@@ -25,8 +25,12 @@ const login = ({ csrfToken }: props) => {
   }
   return (
     <>
-      <section className="h-[80vh]">
-        <div className="h-full px-6 text-gray-800">
+      <section className="h-[80vh] flex flex-col">
+        <div className="flex flex-col items-center justify-center text-center p-2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl antialiased">Work Up</h1>
+          <p className="p-2 text-xl md:text-2xl lg:text-3xl antialiased">Unlock your full potential and reach new heights with WorkUp India </p>
+        </div>
+        <div className="my-auto px-6 text-gray-800">
           <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between xl:justify-center">
             <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
               <img

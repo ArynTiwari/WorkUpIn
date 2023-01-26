@@ -6,6 +6,9 @@ import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 export const projectRouter = createTRPCRouter({
     getAll: publicProcedure.query(({ ctx }) => {
         return ctx.prisma.project.findMany({
+            include:{
+                author:true
+            }
         })
     }),
     getOne: protectedProcedure
