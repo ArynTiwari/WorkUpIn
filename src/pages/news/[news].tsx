@@ -66,7 +66,7 @@ export default function Home({ articles, pageNumber }: Props) {
 
   return (
     <>
-      <div className="mx-4 flex flex-col p-2">
+      <div className="container items-center mx-4 flex flex-col p-2">
         {articles.map((article) => (
           <div key={article.title} className="my-4 flex flex-col">
             <h1
