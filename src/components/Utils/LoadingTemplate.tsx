@@ -2,14 +2,14 @@ import React from "react";
 
 const LoadingTemplate: React.FC = () => {
   return (
-    <div className="relative block w-screen h-screen items-center rounded-lg border border-gray-100 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div className="relative block glass w-screen h-screen items-center rounded-lg border">
       <div
         role="status"
         className="absolute top-2/4 left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <svg
           aria-hidden="true"
-          className="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+          className="mr-2 h-8 w-8 animate-spin fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

@@ -1,13 +1,111 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto:wght@400;700&display=swap");
 :root {
   background: linear-gradient(to right, #fff5eb 0%, #ffffff 50%, #eeffec 100%);
+  --primary-text-color: #183b56;
+  --secondary-text-color: #577592;
+  --accent-color: #bf6aff;
+  --accent-color-dark: #1d69a3;
+  --padding-inline-section: 20px;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
-
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--primary-text-color);
+}
+p {
+  font-family: "Roboto", sans-serif;
+  color: var(--secondary-text-color);
+  line-height: 1.8rem;
+}
+.container {
+  max-width: 1186px;
+  padding: 10px var(--padding-inline-section);
+}
+.hover-link {
+  color: var(--primary-text-color);
+  transition: 0.2s ease-out;
+}
+.hover-link:hover {
+  color: var(--accent-color);
+}
+.primary-button {
+  background-color: var(--accent-color);
+  border-radius: 6px;
+  font-weight: 500;
+  color: white;
+  padding: 5px 24px;
+  box-shadow: 0 0 2px var(--secondary-text-color);
+  transition: 0.2s ease-out;
+}
+.primary-button:hover {
+  background-color: var(--accent-color-dark);
+}
+.secondary-button {
+  background-color: var(--accent-color);
+  border-radius: 6px;
+  font-weight: 700px;
+  color: white;
+  padding: 12px 24px;
+  box-shadow: 0 0 2px var(--secondary-text-color);
+  transition: 0.2s ease-out;
+}
+.header {
+  padding: 50px var(--padding-inline-section) 0;
+}
+.header-section {
+  justify-content: center;
+  gap: 50px;
+}
+.header-img img {
+  width: 100%;
+}
+.companies-header {
+  margin-block: 30px;
+  color: var(--primary-text-color);
+}
+.features-section {
+  padding: 80px var(--padding-inline-section) 0;
+  background-image: url(../../public/assets/new/asset41.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.features-header {
+  text-align: center;
+}
+.big-feature-section {
+  padding: 30px var(--padding-inline-section) 0;
+}
+.big-feature-container {
+  gap: 30px;
+}
+.feature-image img {
+  width: 100%;
+}
+.feature-desc {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.footer {
+  padding: 30px var(--padding-inline-section) 0;
+}
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}

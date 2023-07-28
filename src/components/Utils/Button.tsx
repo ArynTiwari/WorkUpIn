@@ -1,11 +1,10 @@
 type ButtonProps = {
     title: string;
-
   };
   
   function Button({ title }: ButtonProps) {
     return (
-      <button className={`text-center justify-center bg-violet-600 text-base leading-snug uppercase  shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out text-white font-bold py-2 px-4 rounded-full`}>
+      <button className='mt-2 mb-2 primary-button  text-sm h-10 max-w-[150px] text-center'>
         {title}
       </button>
     );

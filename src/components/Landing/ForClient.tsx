@@ -1,29 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import Image from "next/image";
 import Button from "../Utils/Button";
+import asset18 from '../../../public/assets/new/asset18.png'
 import confused from '../../../public/assets/unDraw/confused.svg';
 function ForClient() {
   return (
     <>
-      <section className="mt-8 mx-2  md:mx-6 lg:mx-12 flex flex-col lg:flex-row justify-around">
-        <div className="flex flex-col p-2 lg:max-w-[700px] ">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">
-            Confused about your <span className="text-violet-700">project</span>{" "}
-            ?
-          </h1>
-          <p className="max-w-[600px]  mb-8 text-base md:text-xl lg:text-2xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem
-            recusandae saepe quas! Alias, consequatur!
-          </p>
-          <div className="flex items-center justify-center">
-            <Button title="Find Talent"/>
+      <section className="big-feature-section ">
+        <div className="container flex items-center big-feature-container">
+          <div className="feature-image">
+            <Image src={asset18} alt="" />
+          </div>
+          <div className="feature-desc flex items-center">
+            <h4>Effortless validation for</h4>
+            <h3>Design professionals</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum repellat fugit consequatur laborum voluptates deleniti dolor, commodi quisquam iusto consequuntur!</p>
           </div>
         </div>
-        <div className="hidden lg:flex lg:max-w-[700px] ">
-          <Image className="" src={confused} alt="clientImage" />
-        </div>
       </section>
-      <hr className="border-lime-400 mt-1" />
     </>
   );
 }

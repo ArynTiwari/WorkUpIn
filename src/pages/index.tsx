@@ -5,17 +5,18 @@ import Footer from "../components/Landing/Footer";
 import Services from "../components/Landing/Services";
 import ForClient from "../components/Landing/ForClient";
 import ForTalent from "../components/Landing/ForTalent";
+import Companies from "../components/Landing/Companies";
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>WorkUp Beta</title>
+        <title>WorkUp (Demo)</title>
         <meta name="description" content="In beta" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="mx-4 mt-8 flex flex-col md:mx-6 lg:mx-12">
+      <main className="container mx-auto flex flex-col  ">
         <Landing />
+        <Companies/>
         <Services />
         <ForClient />
         <ForTalent />

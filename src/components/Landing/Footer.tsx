@@ -5,7 +5,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 function Footer() {
   return (
     <>
-      <footer className="mt-2 md:mt-10 mb-10">
+      <footer className="container footer">
         <div className="flex flex-col">
           <div className="mb-6 md:mb-0 ">
             <Link href="/"className="flex mx-auto">
@@ -16,7 +16,7 @@ function Footer() {
                   width={30}
                   height={30}
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap text-violet-700 dark:text-white">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap">
                   WorkUp
                 </span>
             </Link>
@@ -27,12 +27,12 @@ function Footer() {
                 key={footerLink.title}
                 className="flex flex-col my-4 ml-2 md:ml-0"
               >
-                <h4>{footerLink.title}</h4>
+                <h4 className="font-semibold text-lg">{footerLink.title}</h4>
                 <ul>
                   {footerLink.links.map((links) => (
                     <li
                       key={links.id}
-                      className="font-normal text-[20px] mt-1 ml-4 md:ml-0 leading-[24px] text-violet-600 hover:text-violet-800 cursor-pointer"
+                      className="font-normal text-[16px] mt-1 ml-4 md:ml-0 cursor-pointer"
                     >
                       <Link href={`${links.id}`}>
                         {links.display}

@@ -21,7 +21,7 @@ const PublicProfile = ({ id }: prop) => {
     return <LoadingTemplate />;
   }
   if (isError) {
-    return <div>Error</div>;
+    void router.push(`${env.NEXT_PUBLIC_URL}/`);
   }
   function handleCLick() {
     void router.push(`${env.NEXT_PUBLIC_URL}/chat/${id}`);

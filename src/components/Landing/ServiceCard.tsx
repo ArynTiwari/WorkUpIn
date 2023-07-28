@@ -1,22 +1,27 @@
 import Link from "next/link";
-
+import Button from "../Utils/Button";
+import Image from "next/image";
 interface ServiceCardProps {
+  img: string,
   title: string;
   description: string;
   link: string;
 }
 
 export default function ServiceCard({
+  img,
   title,
   description,
   link,
 }: ServiceCardProps) {
   return (
-    <div className="rounded-3xl my-2 p-8 cursor-pointer flex flex-col hover:bg-white">
+    <div className="flex flex-col items-center gap-5 max-w-[30%] text-center">
+      <Image src={img} alt="services-image" />
       <Link href={`${link}`}>
-        <h2 className="text-2xl font-semibold flex">{title}</h2>
+        <h3 className="text-2xl font-semibold flex">{title}</h3>
       </Link>
       <p className="flex">{description}</p>
+      <Button title="Learn more!" />
     </div>
   );
 }
