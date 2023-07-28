@@ -16,12 +16,12 @@ const Services: React.FC = () => {
           <Button title="See all services" />
         </div>
         <div className="features-area flex flex-wrap justify-between gap-3">
-          <ServiceCard img={asset11} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset13} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset14} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset15} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset16} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset17} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset11 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset13 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset14 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset15 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset16 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
+          <ServiceCard img={asset17 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
 
         </div>
       </div>
