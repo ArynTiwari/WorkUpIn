@@ -1,4 +1,5 @@
 import React from 'react'
+import type { StaticImageData } from 'next/image';
 import Image from 'next/image'
 import asset5 from '../../../public/assets/new/asset5.png'
 import asset3 from '../../../public/assets/new/asset3.png'
@@ -18,7 +19,7 @@ const Companies = () => {
                     <Image src={asset5} alt='company' quality={100} height={46} />
                     <Image src={asset6} alt='company' quality={100} height={46} />
                     <Image src={asset7} alt='company' quality={100} height={46} />
-                    <Image src={asset8} alt='company' quality={100} height={46} />
+                    <Image src={asset8 as StaticImageData} alt='company' quality={100} height={46} />
                     <Image src={asset9} alt='company' quality={100} height={46} />
                 </div>
             </div>
