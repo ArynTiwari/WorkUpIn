@@ -8,13 +8,13 @@ function ForClient() {
     <>
       <section className="big-feature-section ">
         <div className="container flex items-center big-feature-container">
-          <div className="feature-image">
+          <div className="feature-image hidden md:block">
             <Image src={asset18} alt="" />
           </div>
           <div className="feature-desc flex items-center">
-            <h4>Effortless validation for</h4>
-            <h3>Design professionals</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum repellat fugit consequatur laborum voluptates deleniti dolor, commodi quisquam iusto consequuntur!</p>
+            <h4 className="text-xl font-medium">Unlock Your Creative Potential</h4>
+            <h3 className="text-2xl font-semibold">Join WorkUp - The Ultimate Platform for Design Professionals</h3>
+            <p className="text-lg">Are you a talented design professional looking for new opportunities to showcase your skills and connect with clients from around the world? WorkUp offers effortless validation and empowers you to reach new heights in your career.</p>
           </div>
         </div>
       </section>

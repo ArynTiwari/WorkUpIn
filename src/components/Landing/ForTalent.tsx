@@ -8,13 +8,12 @@ const ForTalent: React.FC = () => {
     <>
       <section className="big-feature-section ">
         <div className="container flex items-center big-feature-container">
-
           <div className="feature-desc flex items-center">
-            <h4>Effortless validation for</h4>
-            <h3>Design professionals</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum repellat fugit consequatur laborum voluptates deleniti dolor, commodi quisquam iusto consequuntur!</p>
+            <h4 className="text-xl font-medium">Unleash Your Writing Talents</h4>
+            <h3 className="text-2xl font-semibold">WorkUp - Your Go-To Platform for Content Writers</h3>
+            <p className="text-lg">Are you a skilled content writer seeking exciting opportunities to showcase your creativity and collaborate with clients from all corners of the globe? WorkUp provides a seamless validation process and empowers you to excel in your writing career.</p>
           </div>
-          <div className="feature-image">
+          <div className="feature-image hidden md:block">
             <Image src={asset21} alt="" />
           </div>
         </div>

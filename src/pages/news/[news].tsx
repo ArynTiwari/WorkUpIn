@@ -65,69 +65,59 @@ export default function Home({ articles, pageNumber }: Props) {
   const router = useRouter();
 
   return (
-    <>
-      <div className="container items-center mx-auto flex flex-col p-2">
-        {articles.map((article) => (
-          <div key={article.title} className="my-4 flex flex-col">
-            <h1
-              onClick={() => (window.location.href = article.url)}
-              className="text:xl  cursor-pointer font-semibold  md:text-2xl"
-            >
-              {article.title}
-            </h1>
-            <p>{article.description}</p>
-            <div className="mx-auto flex">
-              {!!article.urlToImage && (
-                <img
-                  src={article.urlToImage}
-                  className="max-h-[600px] max-w-[600px] justify-end"
-                  alt="news"
-                  height={600}
-                  width={600}
-                />
-              )}
-            </div>
-            <hr className="" />
+
+    <div className="container  items-center mx-auto flex flex-col">
+      {articles.map((article) => (
+        <div key={article.title} className="flex flex-col container">
+          <h1
+            onClick={() => (window.location.href = article.url)}
+            className="text-xl cursor-pointer font-semibold md:text-2xl text-center"
+          >
+            {article.title}
+          </h1>
+          <p className="">{article.description}</p>
+          <div className="mx-auto flex justify-center md:justify-end">
+            {!!article.urlToImage && (
+              <img
+                src={article.urlToImage}
+                className="max-h-[400px] max-w-[400px]"
+                alt="news"
+             
+              />
+            )}
           </div>
-        ))}
-        <div className="mx-auto my-8 flex w-[400px] items-center justify-between rounded-full bg-slate-50">
-          <div className="flex justify-around gap-8">
-            <div
-              onClick={() => {
-                if (pageNumber > 1) {
-                  void router
-                    .push(`/news/${pageNumber - 1}`)
-                    .then(() => window.scrollTo(0, 0));
-                }
-              }}
-              className={`${
-                pageNumber === 1
-                  ? "cursor-not-allowed text-gray-500"
-                  : "flex cursor-pointer"
+          <hr className="m-4" />
+        </div>
+      ))}
+      <div className="p-4 flex flex-col w-full items-center justify-between rounded-full">
+        <div className="flex justify-center md:justify-start gap-4">
+          <div
+            onClick={() => {
+              if (pageNumber > 1) {
+                void router.push(`/news/${pageNumber - 1}`).then(() => window.scrollTo(0, 0));
+              }
+            }}
+            className={`${pageNumber === 1 ? "cursor-not-allowed text-gray-500" : "cursor-pointer"
               }`}
-            >
-              Previous Page
-            </div>
-            <div>{pageNumber}</div>
-            <div
-              onClick={() => {
-                if (pageNumber < 5) {
-                  void router
-                    .push(`/news/${pageNumber + 1}`)
-                    .then(() => window.scrollTo(0, 0));
-                }
-              }}
-              className={`${
-                pageNumber === 5
-                  ? "cursor-not-allowed text-gray-500"
-                  : "flex cursor-pointer"
-              } justify-end`}
-            >
-              Next Page
-            </div>
+          >
+            Previous
+          </div>
+          <div>{pageNumber}</div>
+          <div
+            onClick={() => {
+              if (pageNumber < 5) {
+                void router.push(`/news/${pageNumber + 1}`).then(() => window.scrollTo(0, 0));
+              }
+            }}
+            className={`${pageNumber === 5 ? "cursor-not-allowed text-gray-500" : "cursor-pointer"
+              }`}
+          >
+            Next 
           </div>
         </div>
       </div>
-    </>
+    </div>
+
+
   );
 }

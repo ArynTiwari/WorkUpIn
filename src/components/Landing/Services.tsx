@@ -15,17 +15,17 @@ const Services: React.FC = () => {
           <h2 className="text-4xl font-semibold mb-5">Services you can avail!</h2>
           <Button title="See all services" />
         </div>
-        <div className="features-area flex flex-wrap justify-between gap-3">
-          <ServiceCard img={asset11 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset13 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset14 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset15 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset16 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-          <ServiceCard img={asset17 as string} title="Developement & IT" description="Web and mobile developement" link="/cat/dev_it" />
-
+        <div className="features-area grid grid-cols-2 gap-4 md:grid-cols-3 justify-center">
+          <ServiceCard img={asset11 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
+          <ServiceCard img={asset13 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
+          <ServiceCard img={asset14 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
+          <ServiceCard img={asset15 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
+          <ServiceCard img={asset16 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
+          <ServiceCard img={asset17 as string} title="Development & IT" description="Web and mobile development" link="/cat/dev_it" />
         </div>
       </div>
     </section>
+
   );
 }
 

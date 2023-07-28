@@ -10,20 +10,36 @@ import asset8 from '../../../public/assets/new/asset8.svg'
 import asset9 from '../../../public/assets/new/asset9.png'
 const Companies = () => {
     return (
-        <section className="companies-section">
-            <div className="container">
-                <div className="text-lg font-bold companies-header text-center">The world’s best companies rely on UsabilityHub to make better design decisions.</div>
-                <div className="logos flex items-center justify-between flex-wrap">
-                    <Image src={asset3} alt='company' quality={100} height={46} />
-                    <Image src={asset4} alt='company' quality={100} height={46} />
-                    <Image src={asset5} alt='company' quality={100} height={46} />
-                    <Image src={asset6} alt='company' quality={100} height={46} />
-                    <Image src={asset7} alt='company' quality={100} height={46} />
-                    <Image src={asset8 as StaticImageData} alt='company' quality={100} height={46} />
-                    <Image src={asset9} alt='company' quality={100} height={46} />
+        <section className="companies-section py-10">
+            <div className="container mx-auto px-4">
+                <div className="text-xl font-bold text-center mb-8">Find the best freelancers for your projects on WorkUp.</div>
+                <div className="logos grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset3} alt='company' quality={100} height={46} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset4} alt='company' quality={100} height={46} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset5} alt='company' quality={100} height={46} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset6} alt='company' quality={100} height={46} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset7} alt='company' quality={100} height={46} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset8 as StaticImageData} alt='company' quality={100} height={32} />
+                    </div>
+                    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+                        <Image src={asset9} alt='company' quality={100} height={46} />
+                    </div>
                 </div>
             </div>
         </section>
+
+
     )
 }
 

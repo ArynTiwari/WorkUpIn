@@ -15,7 +15,7 @@ export default function ServiceCard({
   link,
 }: ServiceCardProps) {
   return (
-    <div className="flex flex-col items-center gap-5 max-w-[30%] text-center">
+    <div className="flex flex-col items-center gap-5 text-center">
       <Image src={img} alt="services-image" />
       <Link href={`${link}`}>
         <h3 className="text-2xl font-semibold flex">{title}</h3>

@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Fragment, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import userAvtar from "../../../public/assets/userAvtar.svg";
-import logoo from "../../../public/assets/logoo.png";
+import userAvatar from "../../../public/assets/userAvatar.svg";
+import logo from "../../../public/assets/logoo.png";
 import { env } from "../../env/client.mjs";
-import Button from "./Button";
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Projects", href: "/projects", current: false },
   { name: "About", href: "/info/about", current: false },
 ];
-const profileMenu = [
-  { name: "Profile", href: "/profile" }
-]
 
+const profileMenu = [{ name: "Profile", href: "/profile" }];
 
 const Nav: React.FC = () => {
   const { data: session } = useSession();
@@ -25,11 +22,12 @@ const Nav: React.FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <nav className="container mx-auto relative">
       <div className="container flex flex-row items-center justify-between">
-        <Link href={'/'}>
-          <Image src={logoo} alt="logo" height={100} width={100} quality={100} loading="lazy" />
+        <Link href="/">
+          <Image src={logo} alt="logo" height={100} width={100} quality={100} loading="lazy" />
         </Link>
         <div className="hidden md:flex md:items-center md:space-x-4">
           <ul className="flex space-x-4 items-center">
@@ -40,14 +38,19 @@ const Nav: React.FC = () => {
                 </Link>
               </li>
             ))}
-            {session ? <button className="primary-button" onClick={(e) => { e.preventDefault(); void signOut() }}>Sign Out</button> : <button className="primary-button" onClick={(e) => { e.preventDefault(); void signIn() }}>Sign In</button>}
+            {session ? (
+              <button className="primary-button" onClick={(e) => { e.preventDefault(); void signOut() }}>
+                Sign Out
+              </button>
+            ) : (
+              <button className="primary-button" onClick={(e) => { e.preventDefault(); void signIn() }}>
+                Sign In
+              </button>
+            )}
           </ul>
         </div>
         <div className="md:hidden flex items-center">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-800"
-          >
+          <button onClick={toggleMenu} className="text-gray-800">
             <Bars3Icon className="h-6 w-6" />
           </button>
         </div>
@@ -63,33 +66,34 @@ const Nav: React.FC = () => {
         leaveTo="opacity-0 scale-95"
       >
         {(ref) => (
-          <div
-            ref={ref}
-            className="container glass mx-auto fixed inset-0 z-50 p-4 md:hidden flex flex-col"
-            onClick={toggleMenu}
-          >
-            <div className="flex">
-              <div className=""><button
-                onClick={toggleMenu}
-                className="absolute top-4 right-4 focus:outline-none"
-              >
-                <XMarkIcon className="h-6 w-6" color="purple" />
-              </button></div>
-              <div className="flex flex-col items-end space-y-2">
-                <ul>
-                  {navigation.map((nav) => (
-                    <li key={nav.name} className="hover-link">
-                      <Link
-                        key={nav.name}
-                        href={nav.href}
-                        onClick={toggleMenu}
-                      >
-                        {nav.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+          <div ref={ref} className="container glass mx-auto fixed inset-0 z-50 p-4 md:hidden">
+            <div className="flex flex-col rounded-lg p-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center space-x-2">
+                  <Image src={logo} alt="logo" height={80} width={80} quality={100} />
+                </div>
+                <button onClick={toggleMenu} className="text-gray-800">
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
               </div>
+              <ul className="flex flex-col space-y-4">
+                {navigation.map((nav) => (
+                  <li key={nav.name} className="hover-link text-xl">
+                    <Link href={nav.href} onClick={toggleMenu}>
+                      {nav.name}
+                    </Link>
+                  </li>
+                ))}
+                {session ? (
+                  <button className="primary-button" onClick={(e) => { e.preventDefault(); void signOut() }}>
+                    Sign Out
+                  </button>
+                ) : (
+                  <button className="primary-button" onClick={(e) => { e.preventDefault(); void signIn() }}>
+                    Sign In
+                  </button>
+                )}
+              </ul>
             </div>
           </div>
         )}
@@ -97,4 +101,5 @@ const Nav: React.FC = () => {
     </nav>
   );
 };
+
 export default Nav;
